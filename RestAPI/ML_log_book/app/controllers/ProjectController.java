@@ -36,21 +36,20 @@ public class ProjectController extends Controller{
 	}
 	
 	@play.db.jpa.Transactional
-	public Result get(int id){
-            List<Project> list = new ArrayList<Project>();
+	public Result getProjectsById(int id){
+            
             if(id == -1){
                 //get all
-               return super.ok("test");
+               List<Project> list = jpaApi.em().createQuery("SELECT p FROM "+Project.TABLE+ " p ORDER BY PKProject").getResultList();
+               return Controller.ok(Json.toJson(list)).as("application/json; charset=utf-8");
             }
             else{
+                //get a project by id(PKProject)
                 Project prom =  (Project) jpaApi.em().find(Project.class, id);
-                list.add(new Project(3,"3"));
-                list.add(new Project(4,"4"));
-                list.add(new Project(5,"five"));
-                list.add(prom);
+                return Controller.ok(Json.toJson(prom)).as("application/json; charset=utf-8");
             }
         
-            return super.ok(Json.toJson(list)).as("application/json; charset=utf-8");
+            
 	}
 	
 	

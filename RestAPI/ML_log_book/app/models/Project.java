@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 
 @Entity
 public class Project {
-	public static String TABLE = "Project";
+	public static String TABLE = Project.class.getSimpleName();
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)

@@ -10,7 +10,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /nueva-promocion							controllers.PromotionController.newPromotion
 GET     /new-promotion                              controllers.PromotionController.newPromotion
-GET     /api/projects                               controllers.ProjectController.get(id: Integer ?= -1)
-GET     /api/proyectos                              controllers.ProjectController.get(id: Integer ?= -1)
-GET     /api/project/$id<[0-9]+>                    controllers.ProjectController.get(id: Integer)
-GET     /api/proyecto/$id<[0-9]+>                   controllers.ProjectController.get(id: Integer)
+GET     /api/projects                               controllers.ProjectController.getProjectsById(id: Integer ?= -1)
+GET     /api/proyectos                              controllers.ProjectController.getProjectsById(id: Integer ?= -1)
+GET     /api/project/$id<[0-9]+>                    controllers.ProjectController.getProjectsById(id: Integer)
+GET     /api/proyecto/$id<[0-9]+>                   controllers.ProjectController.getProjectsById(id: Integer)
