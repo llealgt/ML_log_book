@@ -14,3 +14,6 @@ GET     /api/projects                               controllers.ProjectControlle
 GET     /api/proyectos                              controllers.ProjectController.getProjectsById(id: Integer ?= -1)
 GET     /api/project/$id<[0-9]+>                    controllers.ProjectController.getProjectsById(id: Integer)
 GET     /api/proyecto/$id<[0-9]+>                   controllers.ProjectController.getProjectsById(id: Integer)
+GET     /api/experiment-groups                      controllers.ExperimentGroupController.getExperimentGroupsById(id: Integer ?= -1)
+GET     /api/experiment-group/$id<[0-9]+>           controllers.ExperimentGroupController.getExperimentGroupsById(id: Integer)
+GET     /api/experiment-group/project/$id<[0-9]+>   controllers.ExperimentGroupController.getExperimentGroupsByProject(id: Integer)

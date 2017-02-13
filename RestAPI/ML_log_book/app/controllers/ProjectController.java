@@ -10,6 +10,7 @@ import play.db.NamedDatabase;
 import play.db.jpa.JPAApi;
 import java.util.ArrayList;
 import java.util.List;
+import models.ExperimentGroup;
 import models.Project;
 /**
  * Controller to handle request related to promotion actions
@@ -35,6 +36,11 @@ public class ProjectController extends Controller{
 		return super.ok(views.html.new_promotion.render());
 	}
 	
+        /**
+         * 
+         * @param id
+         * @return 
+         */
 	@play.db.jpa.Transactional
 	public Result getProjectsById(int id){
             
@@ -45,13 +51,24 @@ public class ProjectController extends Controller{
             }
             else{
                 //get a project by id(PKProject)
-                Project prom =  (Project) jpaApi.em().find(Project.class, id);
-                return Controller.ok(Json.toJson(prom)).as("application/json; charset=utf-8");
+                Project project =  (Project) jpaApi.em().find(Project.class, id);
+                return Controller.ok(Json.toJson(project)).as("application/json; charset=utf-8");
             }
         
             
 	}
 	
+        /**
+         * 
+         * @param projectId
+         * @return 
+         */
+        @play.db.jpa.Transactional
+        public Result getExperimentGroupsByProject(int projectId){
+            
+            ExperimentGroup experimentGroup = (ExperimentGroup) jpaApi.em().find(ExperimentGroup.class, projectId);
+            return Controller.ok(Json.toJson(experimentGroup)).as("application/json; charset=utf-8");
+        }
 	
  
 }
