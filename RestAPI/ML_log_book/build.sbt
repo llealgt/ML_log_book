@@ -1,4 +1,4 @@
-name := "ML_lob_book"
+name := "ML_log_book"
 organization := "com.devongt"
 
 version := "1.0"
@@ -16,3 +16,9 @@ EclipseKeys.preTasks := Seq(compile in Compile)
 
 EclipseKeys.projectFlavor := EclipseProjectFlavor.Java           // Java project. Don't expect Scala IDE
 EclipseKeys.createSrc := EclipseCreateSrc.ValueSet(EclipseCreateSrc.ManagedClasses, EclipseCreateSrc.ManagedResources)  // Use .class files instead of generated .scala files for views and routes
+
+sources in (Compile, doc) := Seq.empty
+
+publishArtifact in (Compile, packageDoc) := false
+
+PlayKeys.externalizeResources := false
