@@ -38,7 +38,7 @@ public class ExperimentGroupController extends Controller{
             
             if(projectId == -1){
                 List<ExperimentGroup> experimentGroups = 
-                        (List<ExperimentGroup>)this.jpaApi.em().createQuery("SELECT eg FROM "+ExperimentGroup.TABLE+" eg ORDER BY PKExperimentGroup").getResultList();
+                        (List<ExperimentGroup>)this.jpaApi.em().createQuery("SELECT eg FROM "+ExperimentGroup.TABLE+" eg JOIN eg.project  ORDER BY PKExperimentGroup").getResultList();
                 return Controller.ok(Json.toJson(experimentGroups)).as("application/json; charset=utf-8");
             }
             else{
