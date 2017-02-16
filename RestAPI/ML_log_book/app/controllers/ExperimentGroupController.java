@@ -10,6 +10,7 @@ import play.db.NamedDatabase;
 import play.db.jpa.JPAApi;
 import java.util.ArrayList;
 import java.util.List;
+import models.ClassificationExperiment;
 import models.ExperimentGroup;
 import models.Project;
 /**
@@ -61,5 +62,26 @@ public class ExperimentGroupController extends Controller{
             return Controller.ok(Json.toJson(experimentGroups)).as("application/json; charset=utf-8");
         }
 	
+        @play.db.jpa.Transactional
+        public Result getExperimentsById(int experimentId){
+            if(experimentId == -1){
+                List<ClassificationExperiment> experiments = 
+                        (List<ClassificationExperiment>) jpaApi.em().createQuery("SELECT bg FROM "+ClassificationExperiment.TABLE+" bg ORDER BY PKClassificationExperiment").getResultList();
+                return Controller.ok(Json.toJson(experiments)).as("application/json; charset-utf-8");
+            }
+            else{
+                ClassificationExperiment experiment = (ClassificationExperiment) jpaApi.em().find(ClassificationExperiment.class, experimentId);
+                return Controller.ok(Json.toJson(experiment)).as("application/json; charset-utf-8");
+            }
+        }
+        
+        @play.db.jpa.Transactional
+        public Result getExperimentsByGroup(int groupId){
+            List<ClassificationExperiment> experiments = 
+                    (List<ClassificationExperiment>) jpaApi.em().createQuery("SELECT bg FROM "+ClassificationExperiment.TABLE+" bg WHERE FKExperimentGroup = "+groupId).getResultList();
+            
+            return Controller.ok(Json.toJson(experiments)).as("application/json; charset-utf-8");
+                    
+        }
  
 }

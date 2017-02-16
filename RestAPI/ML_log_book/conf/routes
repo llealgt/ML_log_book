@@ -15,3 +15,6 @@ GET     /api/proyecto/$id<[0-9]+>                   controllers.ProjectControlle
 GET     /api/experiment-groups                      controllers.ExperimentGroupController.getExperimentGroupsById(id: Integer ?= -1)
 GET     /api/experiment-group/$id<[0-9]+>           controllers.ExperimentGroupController.getExperimentGroupsById(id: Integer)
 GET     /api/experiment-group/project/$id<[0-9]+>   controllers.ExperimentGroupController.getExperimentGroupsByProject(id: Integer)
+GET     /api/classification-experiments             controllers.ExperimentGroupController.getExperimentsById(id: Integer ?= -1)
+GET     /api/classification-experiment/$id<[0-9]+>   controllers.ExperimentGroupController.getExperimentsById(id: Integer)           
+GET     /api/classification-experiment/experiment-group/$id<[0-9]+> controllers.ExperimentGroupController.getExperimentsByGroup(id: Integer)
