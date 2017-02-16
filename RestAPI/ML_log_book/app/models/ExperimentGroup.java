@@ -16,10 +16,15 @@ public class ExperimentGroup {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer PKExperimentGroup;
-    private int FKAlgorithm ;
     @ManyToOne
     @JoinColumn(name="FKProject")
     private Project project;
+    @ManyToOne
+    @JoinColumn(name = "FKAlgorithm")
+    private Algorithm algorithm;
+    @ManyToOne
+    @JoinColumn(name = "FKToolFramework")
+    private ToolFramework toolFramework;
     private String description;
     private String executionHost;
     private String contentDirectory;
@@ -55,14 +60,6 @@ public class ExperimentGroup {
 
     public void setDescription(String Description) {
         this.description = Description;
-    }
-
-    public int getFKAlgorithm() {
-        return FKAlgorithm;
-    }
-
-    public void setFKAlgorithm(int FKAlgorithm) {
-        this.FKAlgorithm = FKAlgorithm;
     }
 
     public String getExecutionHost() {
@@ -107,14 +104,35 @@ public class ExperimentGroup {
 
     @ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
     @JoinColumn(name = "FKProject", nullable = false )
-    public Project getFkproject() {
+    public Project getProject() {
             return this.project;
 
     }
 
-    public void setFkProject(Project FkProject) {
+    public void setProject(Project FkProject) {
         this.project = FkProject;
     }
+
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+    @JoinColumn(name = "FKAlgorithm",nullable = false)
+    public Algorithm getAlgorithm() {
+        return algorithm;
+    }
+
+    public void setAlgorithm(Algorithm algorithm) {
+        this.algorithm = algorithm;
+    }
+
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+    @JoinColumn(name = "FKToolFramework",nullable = false)
+    public ToolFramework getToolFramework() {
+        return toolFramework;
+    }
+
+    public void setToolFramework(ToolFramework toolFramework) {
+        this.toolFramework = toolFramework;
+    }
    
+    
     
 }
