@@ -18,3 +18,4 @@ GET     /api/experiment-group/project/$id<[0-9]+>   controllers.ExperimentGroupC
 GET     /api/classification-experiments             controllers.ExperimentGroupController.getExperimentsById(id: Integer ?= -1)
 GET     /api/classification-experiment/$id<[0-9]+>   controllers.ExperimentGroupController.getExperimentsById(id: Integer)           
 GET     /api/classification-experiment/experiment-group/$id<[0-9]+> controllers.ExperimentGroupController.getExperimentsByGroup(id: Integer)
+GET     /api/classification-steps/$experiment<[0-9]+>/$type<[0-9]+> controllers.ExperimentGroupController.getStepsByExperimentAndType(experiment: Integer,type: Integer)

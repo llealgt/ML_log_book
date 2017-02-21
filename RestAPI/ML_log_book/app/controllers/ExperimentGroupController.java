@@ -11,7 +11,9 @@ import play.db.jpa.JPAApi;
 import java.util.ArrayList;
 import java.util.List;
 import models.ClassificationExperiment;
+import models.ClassificationStep;
 import models.ExperimentGroup;
+import models.ExperimentStepType;
 import models.Project;
 /**
  * Controller to handle request related to promotion actions
@@ -82,6 +84,14 @@ public class ExperimentGroupController extends Controller{
             
             return Controller.ok(Json.toJson(experiments)).as("application/json; charset-utf-8");
                     
+        }
+        
+        @play.db.jpa.Transactional
+        public Result getStepsByExperimentAndType(int experiment,int type){
+            
+            //ClassificationStep experimentStepType = (ClassificationStep) jpaApi.em().find(ClassificationStep.class, type);
+            List<Project> test = jpaApi.em().createQuery("SELECT cs FROM "+ClassificationStep.TABLE+ " cs WHERE FKBinaryClassificationExperiment="+experiment+" AND FKExperimentType ="+type).getResultList();
+            return Controller.ok(Json.toJson(test)).as("application/json; charset-utf-8");
         }
  
 }
