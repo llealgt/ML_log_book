@@ -27,10 +27,13 @@ public class ClassificationStep implements Serializable
 //    @ManyToOne
 //    @JoinColumn(name = "FKExperimentType")
     private Integer FKExperimentType;
-//    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date estartTime;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date endTime;
+    //private Date endTime;
+//    /** Field mapping. */
 //    private Date estartTime;
-//    @Temporal(javax.persistence.TemporalType.DATE)
-//    private Date endTime;
     private Double trainCostErrorLoss;
     private Double trainAccuracyRate;
     private Double trainMisclassificationRate;
@@ -398,21 +401,21 @@ public class ClassificationStep implements Serializable
         this.testF1Score = testF1Score;
     }
 
-//    public Date getEstartTime() {
-//        return estartTime;
-//    }
-//
-//    public void setEstartTime(Date estartTime) {
-//        this.estartTime = estartTime;
-//    }
+    public Date getEstartTime() {
+        return estartTime;
+    }
 
-//    public Date getEndTime() {
-//        return endTime;
-//    }
-//
-//    public void setEndTime(Date endTime) {
-//        this.endTime = endTime;
-//    }
+    public void setEstartTime(Date estartTime) {
+        this.estartTime = estartTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
 
     
 }
