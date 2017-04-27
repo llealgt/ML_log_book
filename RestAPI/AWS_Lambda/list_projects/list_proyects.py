@@ -16,16 +16,15 @@ def list_projects(event,context):
     connection = pymysql.connect(host='#',
                              user='#',
                              password='#',
-                             db='ML_log_book',
-                             charset='utf8mb4',
+                             db='#',
+                             charset='#',
                              cursorclass=pymysql.cursors.DictCursor)
     projects = list()
     try:
-        with connection.cursor() as cursor:
+        with connection.cursor(pymysql.cursors.DictCursor) as cursor:
             sql = "SELECT PKProject,Name,Description,ContentDirectory FROM Project"
             cursor.execute(sql)
-            for row in cursor.fetchall():
-                projects.append({"PKProject":row['PKProject'], "Name":row['Name'],"Description":row['Description'],"ContentDirectory":row["ContentDirectory"]})
+            projects = cursor.fetchall()
     finally:
         connection.close()
     

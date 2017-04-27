@@ -17,17 +17,16 @@ def get_project_by_id(event,context):
     connection = pymysql.connect(host='#',
                              user='#',
                              password='#',
-                             db='ML_log_book',
-                             charset='utf8mb4',
+                             db='#',
+                             charset='#',
                              cursorclass=pymysql.cursors.DictCursor)
     project_id_list = event["params"]["path"]["project_id_list"]
     projects = list()
     try:
-        with connection.cursor() as cursor:
+        with connection.cursor(pymysql.cursors.DictCursor) as cursor:
             sql = "SELECT PKProject,Name,Description,ContentDirectory FROM Project WHERE PKProject IN("+project_id_list+")"
             cursor.execute(sql)
-            for row in cursor.fetchall():
-                projects.append({"PKProject":row['PKProject'], "Name":row['Name'],"Description":row['Description'],"ContentDirectory":row["ContentDirectory"]})
+            projects = cursor.fetchall()
     finally:
         connection.close()
     
