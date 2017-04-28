@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Apr 18 21:58:46 2017
-Function that list all experiment groups in the DB.
+Function that lists all experiment groups in the database
 @author: luis
 """
 import pymysql.cursors
@@ -17,8 +17,8 @@ def list_experiment_groups(event,context):
     connection = pymysql.connect(host='#',
                              user='#',
                              password='#',
-                             db='#',
-                             charset='#',
+                             db='ML_log_book',
+                             charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
     experiments = list()
     try:
@@ -41,12 +41,17 @@ def list_experiment_groups(event,context):
 					LEFT OUTER JOIN Tool ON FKTool = PKTool"""
             cursor.execute(sql)
             experiments = cursor.fetchall()
+
+	    #row_count = cursor.rowcount
+        #    if row_count == 1:
+        #        isValidLogin = 1
+        #        id_customer = cursor.fetchone()['idCustomer']
  
     finally:
         connection.close()
     
           
-    return {"statusCode": 200,"headers":{"Content-Type": "application/json"},'body':experiments}
+    return {"statusCode": 200,"headers":{"Content-Type": "application/json"},'body':{'experiment_groups':experiments}}
 
 #event = {"body":{"email":"wichofer89@gmail.com","password":"waitlines"},"headers":"testing","params":{"querystring":{"phone":"1"}}}
 

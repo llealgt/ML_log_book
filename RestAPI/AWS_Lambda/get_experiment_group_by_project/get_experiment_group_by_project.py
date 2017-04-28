@@ -17,8 +17,8 @@ def get_experiment_group_by_project(event,context):
     connection = pymysql.connect(host='#',
                              user='#',
                              password='#',
-                             db='#',
-                             charset='#',
+                             db='ML_log_book',
+                             charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
     experiments = list()
     project_id = event["params"]["path"]["project_id"]
@@ -47,10 +47,11 @@ def get_experiment_group_by_project(event,context):
         connection.close()
     
           
-    return {"statusCode": 200,"headers":{"Content-Type": "application/json"},'body':experiments}
+    return {"statusCode": 200,"headers":{"Content-Type": "application/json"},'body':{'experiment_groups':experiments}}
 
 #event = {"body":{"email":"wichofer89@gmail.com","password":"waitlines"},"headers":"testing","params":{"path":{"experimeng_group_list":"2"}}}
 
 #print(get_experiment_group_by_id(event,event))
+
 
 
