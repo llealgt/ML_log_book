@@ -1,0 +1,9 @@
+ALTER TABLE `ML_log_book`.`Project` 
+ADD COLUMN `FKTeam` INT NOT NULL DEFAULT 1 AFTER `ContentDirectory`,
+ADD INDEX `FKTeam_idx` (`FKTeam` ASC);
+ALTER TABLE `ML_log_book`.`Project` 
+ADD CONSTRAINT `FKTeam`
+  FOREIGN KEY (`FKTeam`)
+  REFERENCES `ML_log_book`.`Team` (`PKTeam`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;

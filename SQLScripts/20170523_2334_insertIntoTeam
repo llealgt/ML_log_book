@@ -1,0 +1,2 @@
+insert into Team(Name,Website,ConcactEmail)
+values ('devongt','www.devongt.com','wichofer89@gmail.com');

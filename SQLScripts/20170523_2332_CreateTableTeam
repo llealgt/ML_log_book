@@ -1,0 +1,10 @@
+CREATE TABLE `ML_log_book`.`Team` (
+  `PKTeam` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(100) NOT NULL,
+  `Website` VARCHAR(100) NULL,
+  `ConcactEmail` VARCHAR(45) NULL,
+  `CreateTime` TIMESTAMP NULL,
+  `LastModification` TIMESTAMP NULL,
+  `CreatedBy` VARCHAR(45) NULL,
+  `LastModifiedBy` VARCHAR(45) NULL,
+  PRIMARY KEY (`PKTeam`));
